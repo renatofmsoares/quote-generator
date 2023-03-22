@@ -5,20 +5,20 @@ const twitterBtn = document.getElementById("twitter");
 const newQuoteBtn = document.getElementById("new-quote");
 
 let allQuotes = [];
-// Shownew quote
+
+// Show new quote
 function newQuote() {
-  // Pick a ramdom quote from apiQuotes array
+  // Pick a random quote from apiQuotes array
   const quote = allQuotes[Math.floor(Math.random() * allQuotes.length)];
   // console.log(quoteText.text);
   quoteText.textContent = quote.text;
-  if (quote.autor) {
+  if (quote.author) {
     quoteAuthor.textContent = quote.author;
   } else {
-    quoteAuthor.textContent = "Unknown";
+    newQuote();
   }
 
   // Check quote length to determine styling
-  console.log(quote.text.length);
   if (quote.text.length > 120) {
     quoteText.classList.add("long-quote");
   } else {
@@ -50,5 +50,4 @@ function tweetQuote() {
 newQuoteBtn.addEventListener("click", newQuote);
 twitterBtn.addEventListener("click", tweetQuote);
 
-getQuotesFromLocalFile();
-newQuote();
+getQuotesFromApi();
