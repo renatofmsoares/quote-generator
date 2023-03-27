@@ -22,7 +22,6 @@ function showNewQuote() {
     allQuotes[Math.floor(Math.random() * allQuotes.length)];
   quoteText.textContent = randomlySelectedQuote.text;
   if (randomlySelectedQuote.author) {
-    console.log("randomlySelectedQuote: ", randomlySelectedQuote);
     quoteAuthor.textContent = randomlySelectedQuote.author;
   } else {
     showNewQuote();
