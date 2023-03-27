@@ -21,7 +21,8 @@ function showNewQuote() {
   const randomlySelectedQuote =
     allQuotes[Math.floor(Math.random() * allQuotes.length)];
   quoteText.textContent = randomlySelectedQuote.text;
-  if (quote.author) {
+  if (randomlySelectedQuote.author) {
+    console.log("randomlySelectedQuote: ", randomlySelectedQuote);
     quoteAuthor.textContent = randomlySelectedQuote.author;
   } else {
     showNewQuote();
@@ -42,7 +43,7 @@ async function getQuotesFromApi() {
     const response = await fetch(apiUrl);
     allQuotes = await response.json();
     hideLoadingSpinner();
-    newQuote();
+    showNewQuote();
   } catch (error) {
     // Cattch error here
   }
@@ -57,7 +58,7 @@ function tweetQuote() {
   window.open(twitterUrl, "_blank");
 }
 
-newQuoteBtn.addEventListener("click", newQuote);
+newQuoteBtn.addEventListener("click", showNewQuote);
 twitterBtn.addEventListener("click", tweetQuote);
 
 getQuotesFromApi();
